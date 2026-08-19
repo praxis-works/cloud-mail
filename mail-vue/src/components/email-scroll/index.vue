@@ -248,6 +248,7 @@ import {useI18n} from "vue-i18n";
 import {EmailUnreadEnum} from "@/enums/email-enum.js";
 import { UseVirtualList } from '@vueuse/components'
 import { useScroll } from '@vueuse/core'
+import {copyText} from "@/utils/clipboard-utils.js";
 
 const props = defineProps({
   getEmailList: Function,
@@ -673,7 +674,7 @@ function handleSearch(type, value) {
 
 async function copyCode(code) {
   try {
-    await navigator.clipboard.writeText(code);
+    await copyText(code);
     ElMessage({
       message: t('copySuccessMsg'),
       type: 'success',
